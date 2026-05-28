@@ -1,23 +1,36 @@
-type AppEnv = 'development' | 'staging' | 'production';
+export type AppEnvironment = 'development' | 'staging' | 'production';
 
 interface EnvConfig {
-    apiUrl: string;
-    appEnv: AppEnv;
-    appName: string;
-    isDev: boolean;
-    isStaging: boolean;
-    isProd: boolean;
+    APP_ENV: AppEnvironment;
+    API_URL: string;
+    APP_NAME: string;
+    ENABLE_LOGS: boolean;
 }
 
-const appEnv = (process.env.EXPO_PUBLIC_APP_ENV ?? 'development') as AppEnv;
-
-const envConfig: EnvConfig = {
-    apiUrl: process.env.EXPO_PUBLIC_API_URL ?? 'https://dev-api.example.com',
-    appEnv,
-    appName: process.env.EXPO_PUBLIC_APP_NAME ?? 'MyApp',
-    isDev: appEnv === 'development',
-    isStaging: appEnv === 'staging',
-    isProd: appEnv === 'production',
+// process.env undefined ဖြစ်မှာကို fallback နဲ့ ကာကွယ်တယ်
+const getEnv = (key: string, fallback: string): string => {
+    try {
+        const value = process.env[key];
+        return value !== undefined && value !== '' ? value : fallback;
+    } catch {
+        return fallback;
+    }
 };
 
-export default envConfig;
+const rawEnv = getEnv('EXPO_PUBLIC_APP_ENV', 'development');
+
+const validEnvs: AppEnvironment[] = ['development', 'staging', 'production'];
+const appEnv: AppEnvironment = validEnvs.includes(rawEnv as AppEnvironment)
+    ? (rawEnv as AppEnvironment)
+    : 'development';
+
+export const ENV: EnvConfig = {
+    APP_ENV: appEnv,
+    API_URL: getEnv('EXPO_PUBLIC_API_URL', 'http://10.0.2.2:8000/api'),
+    APP_NAME: getEnv('EXPO_PUBLIC_APP_NAME', 'FormTinMal'),
+    ENABLE_LOGS: getEnv('EXPO_PUBLIC_ENABLE_LOGS', 'true') === 'true',
+};
+
+export const isDev = ENV.APP_ENV === 'development';
+export const isStaging = ENV.APP_ENV === 'staging';
+export const isProd = ENV.APP_ENV === 'production';
