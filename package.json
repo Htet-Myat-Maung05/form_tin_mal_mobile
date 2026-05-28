@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.ts",
   "dependencies": {
+    "axios": "^1.16.1",
     "expo": "~56.0.4",
     "expo-dev-client": "~56.0.16",
     "expo-status-bar": "~56.0.4",
@@ -19,8 +20,14 @@
     "ios": "expo run:ios",
     "web": "expo start --web",
     "start": "npx expo start",
-    "start:staging": "cross-env EXPO_PUBLIC_API_URL=https://staging-api.example.com EXPO_PUBLIC_APP_ENV=staging EXPO_PUBLIC_APP_NAME=\"FormTinMal UAT\" expo start --clear",
-    "start:prod": "cross-env EXPO_PUBLIC_API_URL=https://api.example.com EXPO_PUBLIC_APP_ENV=production EXPO_PUBLIC_APP_NAME=\"FormTinMal\" expo start --clear"
+    "start:dev": "cross-env EXPO_PUBLIC_APP_ENV=development EXPO_PUBLIC_API_URL=http://10.0.2.2:8000/api EXPO_PUBLIC_APP_NAME=\"FormTinMal DEV\" EXPO_PUBLIC_ENABLE_LOGS=true expo start --clear",
+    "start:staging": "cross-env EXPO_PUBLIC_APP_ENV=staging EXPO_PUBLIC_API_URL=https://staging-api.example.com/api EXPO_PUBLIC_APP_NAME=\"FormTinMal UAT\" EXPO_PUBLIC_ENABLE_LOGS=true expo start --clear",
+    "start:prod": "cross-env EXPO_PUBLIC_APP_ENV=production EXPO_PUBLIC_API_URL=https://api.example.com/api EXPO_PUBLIC_APP_NAME=\"FormTinMal\" EXPO_PUBLIC_ENABLE_LOGS=false expo start --clear",
+    "build:dev": "eas build --profile development --platform android",
+    "build:staging": "eas build --profile staging --platform android",
+    "build:prod": "eas build --profile production --platform android",
+    "build:dev:local": "eas build --profile development --platform android --local",
+    "build:staging:local": "eas build --profile staging --platform android --local"
   },
   "private": true
 }

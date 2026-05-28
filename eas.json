@@ -1,25 +1,45 @@
 {
     "cli": {
-        "version": ">= 16.0.0"
+        "version": ">= 10.0.0"
     },
     "build": {
         "development": {
             "developmentClient": true,
             "distribution": "internal",
             "env": {
-                "APP_ENV": "development"
+                "EXPO_PUBLIC_APP_ENV": "development",
+                "EXPO_PUBLIC_API_URL": "http://10.0.2.2:8000/api",
+                "EXPO_PUBLIC_APP_NAME": "FormTinMal DEV",
+                "EXPO_PUBLIC_ENABLE_LOGS": "true"
+            },
+            "android": {
+                "buildType": "apk"
             }
         },
         "staging": {
+            "developmentClient": false,
             "distribution": "internal",
             "env": {
-                "APP_ENV": "staging"
+                "EXPO_PUBLIC_APP_ENV": "staging",
+                "EXPO_PUBLIC_API_URL": "https://staging-api.example.com/api",
+                "EXPO_PUBLIC_APP_NAME": "FormTinMal UAT",
+                "EXPO_PUBLIC_ENABLE_LOGS": "true"
+            },
+            "android": {
+                "buildType": "apk"
             }
         },
         "production": {
+            "developmentClient": false,
             "distribution": "store",
             "env": {
-                "APP_ENV": "production"
+                "EXPO_PUBLIC_APP_ENV": "production",
+                "EXPO_PUBLIC_API_URL": "https://api.example.com/api",
+                "EXPO_PUBLIC_APP_NAME": "FormTinMal",
+                "EXPO_PUBLIC_ENABLE_LOGS": "false"
+            },
+            "android": {
+                "buildType": "aab"
             }
         }
     },
