@@ -1,6 +1,6 @@
 const en = {
     common: {
-        hello: "Hello"
+        hello: "Hello ."
     }
 
 }
