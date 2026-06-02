@@ -1,6 +1,6 @@
 const mm = {
     common: {
-        hello: "ဟယ်လို"
+        hello: "ဟယ်လို ။"
     }
 }
 
