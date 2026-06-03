@@ -1,7 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import { ENV } from 'src/config/env';
 
 export default function App() {
+  console.log(ENV.API_URL);
   return (
     <View style={styles.container}>
       <Text>Open up App.tsx to start working on your app!</Text>
