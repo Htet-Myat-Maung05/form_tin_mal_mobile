@@ -5,22 +5,22 @@ const ENV_CONFIG = {
         appName: 'FormTinMal DEV',
         bundleId: 'com.yourcompany.formtinmal.dev',
         androidPackage: 'com.yourcompany.formtinmal.dev',
-        icon: './assets/icons/icon-dev.png',
-        adaptiveIcon: './assets/icons/adaptive-icon-dev.png',
+        icon: './assets/icon.png',
+        adaptiveIcon: './assets/android-icon-foreground.png',
     },
     staging: {
         appName: 'FormTinMal UAT',
         bundleId: 'com.yourcompany.formtinmal.staging',
         androidPackage: 'com.yourcompany.formtinmal.staging',
-        icon: './assets/icons/icon-staging.png',
-        adaptiveIcon: './assets/icons/adaptive-icon-staging.png',
+        icon: './assets/icon.png',
+        adaptiveIcon: './assets/android-icon-foreground.png',
     },
     production: {
         appName: 'FormTinMal',
         bundleId: 'com.yourcompany.formtinmal',
         androidPackage: 'com.yourcompany.formtinmal',
-        icon: './assets/icons/icon.png',
-        adaptiveIcon: './assets/icons/adaptive-icon.png',
+        icon: './assets/icon.png',
+        adaptiveIcon: './assets/android-icon-foreground.png',
     },
 };
 
@@ -36,11 +36,6 @@ export default ({ config }: ConfigContext): ExpoConfig => {
         orientation: 'portrait',
         icon: envConfig.icon,
         userInterfaceStyle: 'automatic',
-        // splash: {
-        //     image: './assets/splash.png',
-        //     resizeMode: 'contain',
-        //     backgroundColor: '#ffffff',
-        // },
         ios: {
             supportsTablet: false,
             bundleIdentifier: envConfig.bundleId,
@@ -62,5 +57,10 @@ export default ({ config }: ConfigContext): ExpoConfig => {
                 projectId: 'YOUR_EAS_PROJECT_ID',
             },
         },
+        plugins: [
+            'expo-router',
+            'expo-status-bar',
+            'expo-localization',
+        ]
     };
 };
